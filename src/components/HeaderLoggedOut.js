@@ -10,7 +10,10 @@ function HeaderLoggedOut(props) {
     try {
       const response = await Axios.post('http://localhost:8080/login', {username, password})
       if (response.data) {
-        console.log(response.data)
+        // console.log(response.data)
+        localStorage.setItem("halcyonToken", response.data.token)
+        localStorage.setItem("halcyonUsername", response.data.username)
+        localStorage.setItem("halcyonAvatar", response.data.avatar)
         props.setLoggedIn(true)
       } else {
         console.log("There was a problem with the username and/or password")
